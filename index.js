@@ -1,6 +1,8 @@
 module.exports = {
   Validation: require('./lib/validation'),
-  Generic: require('./lib/generic')
+  Generic: require('./lib/generic'),
+  HttpStatus: require('./lib/http-status'),
+  Argument: require('./lib/argument')
 };
 
 module.exports.logError = function(err, cb) { 
