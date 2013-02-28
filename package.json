@@ -1,7 +1,7 @@
 {
   "name": "errors",
   "description": "Common error classes",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "dependencies": {
   },
@@ -9,5 +9,5 @@
     "nodeunit": "= 0.7.4"
   },
   "main": "index.js",
-  "engines": { "node": ">= 0.4" }
+  "engines": { "node": ">= 0.8" }
 }
