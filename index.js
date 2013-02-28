@@ -3,7 +3,10 @@ module.exports = {
   Generic: require('./lib/generic'),
   HttpStatus: require('./lib/http-status'),
   Argument: require('./lib/argument'),
-  middleware: require('./lib/middleware')
+  middleware: {
+    errorHandler: require('./lib/middleware/errorHandler'),
+    crashProtector: require('./lib/middleware/crashProtector')
+  }
 };
 
 module.exports.logError = function(err, cb) { 
@@ -13,3 +16,4 @@ module.exports.logError = function(err, cb) {
   } 
   if(cb) cb(err); 
 };
+
