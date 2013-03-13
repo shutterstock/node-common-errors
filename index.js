@@ -3,6 +3,8 @@ module.exports = {
   Generic: require('./lib/generic'),
   HttpStatus: require('./lib/http-status'),
   Argument: require('./lib/argument'),
+  ArgumentNull: require('./lib/argumentNull'),
+  NotPermitted: require('./lib/notPermitted'),
   middleware: {
     errorHandler: require('./lib/middleware/errorHandler'),
     crashProtector: require('./lib/middleware/crashProtector')
