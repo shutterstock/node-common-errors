@@ -1,7 +1,7 @@
 {
   "name": "errors",
   "description": "Common error classes",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "dependencies": {
   },

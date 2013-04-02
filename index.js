@@ -4,6 +4,7 @@ module.exports = {
   HttpStatus: require('./lib/http-status'),
   Argument: require('./lib/argument'),
   ArgumentNull: require('./lib/argumentNull'),
+  AlreadyInUse: require('./lib/alreadyInUse'),
   NotPermitted: require('./lib/notPermitted'),
   middleware: {
     errorHandler: require('./lib/middleware/errorHandler'),
