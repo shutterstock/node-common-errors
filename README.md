@@ -190,7 +190,7 @@ Express middleware for preventing the web server from crashing when an error is 
 Any error that would have caused a crash is logged to *stderr*.
 
 ```js
-var app = appInitialize.initialize(express());
+var app = express();
 
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
@@ -212,7 +212,7 @@ module.exports = app;
 Express middleware that translates common errors into HTTP status codes and messages.
 
 ```js
-var app = appInitialize.initialize(express());
+var app = express();
 
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
