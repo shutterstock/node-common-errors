@@ -201,7 +201,7 @@ app.use(errors.middleware.crashProtector());
 app.get('/healthcheck', function (req, res, next){res.send('YESOK')});
 
 app.use(app.router);
-app.use(errorHandler);
+app.use(errors.middleware.errorHandler);
 
 module.exports = app;
 ```
@@ -223,7 +223,7 @@ app.use(errors.middleware.crashProtector());
 app.get('/healthcheck', function (req, res, next){res.send('YESOK')});
 
 app.use(app.router);
-app.use(errorHandler);
+app.use(errors.middleware.errorHandler);
 
 module.exports = app;
 ```
