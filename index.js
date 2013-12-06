@@ -25,12 +25,12 @@ module.exports.logError = function(err, cb) {
 };
 
 module.exports.log = function(err, message) {
-  if(typeof err == 'string') err = new module.exports.Generic(err);
+  if(typeof err == 'string') message = err, err = new module.exports.Generic(message);
+  else if(err && !(err instanceof module.exports.Generic) || err.isLogged) {
+    err = new module.exports.Generic(message || "A generic error has occurred.", err);
+  }
   if(err) {
-    message = message || "A generic error has occurred.";
-    if(err.isLogged) err = new module.exports.Generic(message);
-    else err = new module.exports.Generic(message, err);
-    console.error(err);
+    console.error(err && err.stack || err);
     err.isLogged = true;
   }
   return err;

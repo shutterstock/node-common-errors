@@ -10,7 +10,7 @@ module.exports.setUp = function(cb){
   errorLog = [];
 
   console.error = function(message){
-    if(message.message) errorLog.push(message.message);
+    if(message && message.message) errorLog.push(message.message);
     else errorLog.push(message);
   };
 
@@ -28,7 +28,7 @@ module.exports["log message"] = function(test){
   var err = new Error("This is a test.");
   var err2 = errors.log(err, "Panic!");
   test.equals(errorLog.length, 1);
-  test.equals(errorLog[0], "Panic!");
+  test.ok(/GenericError: Panic!/.test(errorLog[0]), 'message matches');
   test.equals(err, err2.innerError);
   test.ok(err2.isLogged);
   test.done();
@@ -37,8 +37,8 @@ module.exports["log message"] = function(test){
 module.exports["log string error"] = function(test){
   var err2 = errors.log("Panic!");
   test.equals(errorLog.length, 1);
-  test.equals(errorLog[0], "A generic error has occurred.");
-  test.equals(err2.innerError.message, "Panic!");
+  test.ok(/GenericError: Panic!/.test(errorLog[0]), 'message matches');
+  test.ok(!err2.innerError, 'no inner error');
   test.ok(err2.isLogged);
   test.done();
 }
@@ -47,7 +47,28 @@ module.exports["log error, no message"] = function(test){
   var err = new Error("This is a test.");
   var err2 = errors.log(err);
   test.equals(errorLog.length, 1);
-  test.equals(errorLog[0], "A generic error has occurred.");
+  test.ok(/GenericError: A generic error has occurred./.test(errorLog[0]), "message matches");
+  test.equals(err, err2.innerError)
+  test.ok(err2.isLogged);
+  test.done();
+}
+
+module.exports["log generic error"] = function(test){
+  var err = new errors.Generic("This is a test.");
+  var err2 = errors.log(err);
+  test.equals(errorLog.length, 1);
+  test.ok(/GenericError: This is a test./.test(errorLog[0]), "message matches");
+  test.ok(!err2.innerError);
+  test.ok(err2.isLogged);
+  test.done();
+}
+
+module.exports["log generic error again"] = function(test){
+  var err = new errors.Generic("This is a test.");
+  err.isLogged = true;
+  var err2 = errors.log(err);
+  test.equals(errorLog.length, 1);
+  test.ok(/GenericError: A generic error has occurred./.test(errorLog[0]), "message matches");
   test.equals(err, err2.innerError)
   test.ok(err2.isLogged);
   test.done();
