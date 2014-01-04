@@ -13,6 +13,7 @@ Common error classes and utility functions
 * [GenericError](#generic)
 * [HttpStatusError](#httpstatus)
 * [NotPermittedError](#notpermitted)
+* [AuthenticationRequiredError](#authrequired)
 * [ValidationError](#validation)
 
 ### Utility Functions
@@ -118,6 +119,23 @@ new HttpStatusError(message, statusCode)
 
 ```js
 throw new errors.HttpStatus("Not Found", 404);
+```
+
+---------------------------------------
+
+<a name="authrequired" />
+### AuthenticationRequiredError
+
+Applicable when an operation requires authentication
+
+__Arguments__
+
+new AuthenticationRequiredError(message)
+
+* message - any message
+
+```js
+throw new errors.AuthenticationRequiredError("Please provide authentication.")
 ```
 
 ---------------------------------------
