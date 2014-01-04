@@ -6,6 +6,7 @@ module.exports = {
   ArgumentNull: require('./lib/argumentNull'),
   AlreadyInUse: require('./lib/alreadyInUse'),
   NotPermitted: require('./lib/notPermitted'),
+  AuthenticationRequired: require('./lib/authenticationRequired'),
   middleware: {
     errorHandler: require('./lib/middleware/errorHandler'),
     crashProtector: require('./lib/middleware/crashProtector')
