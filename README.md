@@ -8,6 +8,7 @@ Common error classes and utility functions
 ### Common Error Classes
 
 * [AlreadyInUseError](#alreadyinuse)
+* [NotSupportedError](#notsupported)
 * [ArgumentError](#argument)
 * [ArgumentNullError](#argumentnull)
 * [GenericError](#generic)
@@ -41,6 +42,23 @@ new ArgumentNullError(entityName, arg1, [arg2, arg3, arg4, ...])
 
 ```js
 throw new errors.ArgumentNull('user', 'username');
+```
+
+---------------------------------------
+
+<a name="notsupported" />
+### NotSupportedError
+
+Applicable when a certain condition is not supported by your application.
+
+__Arguments__
+
+new NotSupportedError(message)
+
+* message - a message
+
+```js
+throw new errors.NotSupported('Zero values');
 ```
 
 ---------------------------------------
