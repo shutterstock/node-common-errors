@@ -2,6 +2,7 @@ module.exports = {
   Validation: require('./lib/validation'),
   Generic: require('./lib/generic'),
   HttpStatus: require('./lib/http-status'),
+  NotSupported: require('./lib/not-supported'),
   Argument: require('./lib/argument'),
   ArgumentNull: require('./lib/argumentNull'),
   AlreadyInUse: require('./lib/alreadyInUse'),
