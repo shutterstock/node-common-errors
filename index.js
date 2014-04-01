@@ -29,7 +29,7 @@ module.exports.logError = function(err, cb) {
 module.exports.log = function(err, message) {
   if(typeof err == 'string') message = err, err = new module.exports.Generic(message);
   else if(err && !(err instanceof module.exports.Generic) || err.isLogged) {
-    err = new module.exports.Generic(message || "A generic error has occurred.", err);
+    err = new module.exports.Generic(message || err.message || "A generic error has occurred.", err);
   }
   if(err) {
     console.error(err && err.stack || err);

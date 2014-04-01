@@ -47,7 +47,7 @@ module.exports["log error, no message"] = function(test){
   var err = new Error("This is a test.");
   var err2 = errors.log(err);
   test.equals(errorLog.length, 1);
-  test.ok(/GenericError: A generic error has occurred./.test(errorLog[0]), "message matches");
+  test.ok(/GenericError: This is a test./.test(errorLog[0]), "message matches");
   test.equals(err, err2.innerError)
   test.ok(err2.isLogged);
   test.done();
@@ -68,7 +68,7 @@ module.exports["log generic error again"] = function(test){
   err.isLogged = true;
   var err2 = errors.log(err);
   test.equals(errorLog.length, 1);
-  test.ok(/GenericError: A generic error has occurred./.test(errorLog[0]), "message matches");
+  test.ok(/GenericError: This is a test./.test(errorLog[0]), "message matches");
   test.equals(err, err2.innerError)
   test.ok(err2.isLogged);
   test.done();
