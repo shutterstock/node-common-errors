@@ -201,7 +201,7 @@ function validateUsername(username){
 <a name="log" />
 ### Log
 
-Wraps a given error in a GenericError and logs it to *stderr*.  Useful for logging errors received by a callback.
+Modifies an error's stack to include the current stack and logs it to *stderr*.  Useful for logging errors received by a callback.
 
 __Arguments__
 
