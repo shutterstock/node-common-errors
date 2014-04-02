@@ -27,9 +27,13 @@ module.exports.logError = function(err, cb) {
 };
 
 module.exports.log = function(err, message) {
-  if(typeof err == 'string') message = err, err = new module.exports.Generic(message);
-  else if(err && !(err instanceof module.exports.Generic) || err.isLogged) {
-    err = new module.exports.Generic(message || "A generic error has occurred.", err);
+  if(typeof err == 'string') {
+    err = new module.exports.Generic(err);
+  } else {
+    if (message) {
+      err.message = message;
+    }
+    err = module.exports._prependCurrentStack(err);
   }
   if(err) {
     console.error(err && err.stack || err);
@@ -37,3 +41,12 @@ module.exports.log = function(err, message) {
   }
   return err;
 }
+
+module.exports._prependCurrentStack = function(err) {
+  // skip the first three lines, because they're just noise
+  var stackToPrepend = (new Error()).stack.split("\n").slice(3);
+  var mainStack = err.stack.split("\n");
+  var errTitle = mainStack.shift();
+  err.stack = [errTitle].concat(stackToPrepend, "====", mainStack).join("\n");
+  return err;
+};
