@@ -8,13 +8,13 @@ Common error classes and utility functions
 ### Common Error Classes
 
 * [AlreadyInUseError](#alreadyinuse)
-* [NotSupportedError](#notsupported)
 * [ArgumentError](#argument)
 * [ArgumentNullError](#argumentnull)
+* [AuthenticationRequiredError](#authrequired)
 * [GenericError](#generic)
 * [HttpStatusError](#httpstatus)
 * [NotPermittedError](#notpermitted)
-* [AuthenticationRequiredError](#authrequired)
+* [NotSupportedError](#notsupported)
 * [ValidationError](#validation)
 
 ### Utility Functions
@@ -33,32 +33,16 @@ Common error classes and utility functions
 
 Applicable when a resource is already in use, for example unique key constraints like a username.
 
-__Arguments__
+	new ArgumentNullError(entityName, arg1, [arg2, arg3, arg4, ...])
 
-new ArgumentNullError(entityName, arg1, [arg2, arg3, arg4, ...])
+__Arguments__
 
 * entityName - the entity that owns the protected resource
 * args - the fields or attributes that are already in use
 
 ```js
+// Example
 throw new errors.ArgumentNull('user', 'username');
-```
-
----------------------------------------
-
-<a name="notsupported" />
-### NotSupportedError
-
-Applicable when a certain condition is not supported by your application.
-
-__Arguments__
-
-new NotSupportedError(message)
-
-* message - a message
-
-```js
-throw new errors.NotSupported('Zero values');
 ```
 
 ---------------------------------------
@@ -68,13 +52,14 @@ throw new errors.NotSupported('Zero values');
 
 Applicable when there's a generic problem with an argument received by a function call.
 
-__Arguments__
+	new ArgumentError(argumentName)
 
-new ArgumentError(argumentName)
+__Arguments__
 
 * argumentName - the name of the argument that has a problem
 
 ```js
+// Example
 throw new errors.Argument('username');
 ```
 
@@ -85,14 +70,33 @@ throw new errors.Argument('username');
 
 Applicable when an argument received by a function call is null/undefined or empty.
 
-__Arguments__
+	new ArgumentNullError(argumentName)
 
-new ArgumentNullError(argumentName)
+__Arguments__
 
 * argumentName - the name of the argument that is null
 
 ```js
+// Example
 throw new errors.ArgumentNull('username');
+```
+
+---------------------------------------
+
+<a name="authrequired" />
+### AuthenticationRequiredError
+
+Applicable when an operation requires authentication
+
+	new AuthenticationRequiredError(message)
+
+__Arguments__
+
+* message - any message
+
+```js
+// Example
+throw new errors.AuthenticationRequiredError("Please provide authentication.")
 ```
 
 ---------------------------------------
@@ -107,14 +111,15 @@ show the the stack where it was consumed.
 For example, if you perform a SQL query that returns an error with the callback, you don't know where in *your* code the offending
 query was generated.  Wrapping the returned error in your own GenericError will solve this problem.
 
-__Arguments__
+	new GenericError(message[, innerError])
 
-new GenericError(message[, innerError])
+__Arguments__
 
 * message - any message you want
 * innerError - any error that you want to preserve with the new error
 
 ```js
+// Example
 mysql.query('SELECT * FROM users', function(err, results){
 	if(err) return new errors.Generic("Had trouble retrieving users.", err);
 	console.log(results);
@@ -128,32 +133,33 @@ mysql.query('SELECT * FROM users', function(err, results){
 
 Represents a message and a HTTP status code.
 
+	new HttpStatusError(status_code[, message])
+
 __Arguments__
 
-new HttpStatusError(message, statusCode)
-
-* message - any message
-* statusCode - any HTTP status code integer
+* `status_code` - any HTTP status code integer
+* `message` - any message
 
 ```js
+// Example
 throw new errors.HttpStatus("Not Found", 404);
 ```
 
----------------------------------------
+	new HttpStatusError(err[, req])
 
-<a name="authrequired" />
-### AuthenticationRequiredError
-
-Applicable when an operation requires authentication
+Figure out a proper status code and message from a given error.
+To change the mappings, modify `HttpStatusError.message_map` and `HttpStatusError.code_map`
 
 __Arguments__
 
-new AuthenticationRequiredError(message)
+* `err` - any Error subclass
+* `req` - the request object
 
-* message - any message
+
 
 ```js
-throw new errors.AuthenticationRequiredError("Please provide authentication.")
+// Example
+throw new errors.HttpStatus("Not Found", 404);
 ```
 
 ---------------------------------------
@@ -163,14 +169,33 @@ throw new errors.AuthenticationRequiredError("Please provide authentication.")
 
 Applicable when an operation is not permitted
 
-__Arguments__
+	new NotPermittedError(message)
 
-new NotPermittedError(message)
+__Arguments__
 
 * message - any message
 
 ```js
+// Example
 throw new errors.NotPermitted("username cannot be changed once set.")
+```
+
+---------------------------------------
+
+<a name="notsupported" />
+### NotSupportedError
+
+Applicable when a certain condition is not supported by your application.
+
+	new NotSupportedError(message)
+
+__Arguments__
+
+* message - a message
+
+```js
+// Example
+throw new errors.NotSupported('Zero values');
 ```
 
 ---------------------------------------
@@ -180,14 +205,15 @@ throw new errors.NotPermitted("username cannot be changed once set.")
 
 Useful for denoting a problem with a user-defined value.  Generally, you wont throw this error.
 
-__Arguments__
+	new ValidationError(message[, code])
 
-new ValidationError(message[, code])
+__Arguments__
 
 * message - any message
 * code - an optional error code
 
 ```js
+// Example
 function validateUsername(username){
 	var errors = [];
 	if(username.length < 3) errors.push(new errors.Validation("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH"));
@@ -203,14 +229,15 @@ function validateUsername(username){
 
 Modifies an error's stack to include the current stack and logs it to *stderr*.  Useful for logging errors received by a callback.
 
-__Arguments__
+	log(err[, message])
 
-log(err[, message])
+__Arguments__
 
 * err - any error or error message received from a callback
 * message - any message you'd like to prepend
 
 ```js
+// Example
 mysql.query('SELECT * FROM users', function(err, results){
 	if(err) return errors.log(err, "Had trouble retrieving users.");
 	console.log(results);
@@ -226,6 +253,7 @@ Express middleware for preventing the web server from crashing when an error is 
 Any error that would have caused a crash is logged to *stderr*.
 
 ```js
+// Example
 var app = express();
 
 app.use(express.static(__dirname + '/../public'));
@@ -248,6 +276,7 @@ module.exports = app;
 Express middleware that translates common errors into HTTP status codes and messages.
 
 ```js
+// Example
 var app = express();
 
 app.use(express.static(__dirname + '/../public'));
@@ -274,7 +303,7 @@ This library was developed by David Fenster at [Shutterstock](http://www.shutter
 
 ## License
 
-Copyright (C) 2013 by Shutterstock Images, LLC
+Copyright (C) 2013-2014 by Shutterstock Images, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
