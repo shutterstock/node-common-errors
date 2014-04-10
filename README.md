@@ -37,8 +37,8 @@ Applicable when a resource is already in use, for example unique key constraints
 
 __Arguments__
 
-* entityName - the entity that owns the protected resource
-* args - the fields or attributes that are already in use
+* `entityName` - the entity that owns the protected resource
+* `args` - the fields or attributes that are already in use
 
 ```js
 // Example
@@ -56,7 +56,7 @@ Applicable when there's a generic problem with an argument received by a functio
 
 __Arguments__
 
-* argumentName - the name of the argument that has a problem
+* `argumentName` - the name of the argument that has a problem
 
 ```js
 // Example
@@ -74,7 +74,7 @@ Applicable when an argument received by a function call is null/undefined or emp
 
 __Arguments__
 
-* argumentName - the name of the argument that is null
+* `argumentName` - the name of the argument that is null
 
 ```js
 // Example
@@ -92,7 +92,7 @@ Applicable when an operation requires authentication
 
 __Arguments__
 
-* message - any message
+* `message` - any message
 
 ```js
 // Example
@@ -108,19 +108,19 @@ Applicable for any error returned by a callback, or any time you want to throw a
 Call stacks from both errors will be concatenated for a full call stack.  This effectively patches a design issue in JavaScript
 where logging an error from an asynchronous callback will show only the call stack from the error's context, but does not
 show the the stack where it was consumed.
-For example, if you perform a SQL query that returns an error with the callback, you don't know where in *your* code the offending
+For example, if you perform a SQL query that returns an error with the callback, you don't know where in *your* `code` the offending
 query was generated.  Wrapping the returned error in your own GenericError will solve this problem.
 
 	new GenericError(message[, innerError])
 
 __Arguments__
 
-* message - any message you want
-* innerError - any error that you want to preserve with the new error
+* `message` - any message you want
+* `innerError` - any error that you want to preserve with the new error
 
 ```js
 // Example
-mysql.query('SELECT * FROM users', function(err, results){
+mysql.query('SELECT * `FROM` users', function(err, results){
 	if(err) return new errors.Generic("Had trouble retrieving users.", err);
 	console.log(results);
 })
@@ -173,7 +173,7 @@ Applicable when an operation is not permitted
 
 __Arguments__
 
-* message - any message
+* `message` - any message
 
 ```js
 // Example
@@ -191,7 +191,7 @@ Applicable when a certain condition is not supported by your application.
 
 __Arguments__
 
-* message - a message
+* `message` - a message
 
 ```js
 // Example
@@ -209,8 +209,8 @@ Useful for denoting a problem with a user-defined value.  Generally, you wont th
 
 __Arguments__
 
-* message - any message
-* code - an optional error code
+* `message` - any message
+* `code` - an optional error code
 
 ```js
 // Example
@@ -233,12 +233,12 @@ Modifies an error's stack to include the current stack and logs it to *stderr*. 
 
 __Arguments__
 
-* err - any error or error message received from a callback
-* message - any message you'd like to prepend
+* `err` - any error or error message received from a callback
+* `message` - any message you'd like to prepend
 
 ```js
 // Example
-mysql.query('SELECT * FROM users', function(err, results){
+mysql.query('SELECT * `FROM` users', function(err, results){
 	if(err) return errors.log(err, "Had trouble retrieving users.");
 	console.log(results);
 });
