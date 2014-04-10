@@ -16,7 +16,8 @@
   "dependencies": {
   },
   "devDependencies": {
-    "nodeunit": "= 0.7.4",
+    "mocha": "*",
+    "sinon": "*",
     "lodash": "= 2.4.1"
   },
   "keywords": [
