@@ -97,13 +97,30 @@ describe("errorHandler", function(){
     assert.ok(/test/.test(console.error.getCall(0).args[0]));
   });  
 
-  it("should handle HttpStatusError", function(){
+  it("should handle HttpStatusError (deprecated)", function(){
     var res = new Response();
     errorHandler(new errors.HttpStatus('custom status message', 544), {}, res);
     assert.equal(res.status_code, 544);
     assert.equal(res.message, "Internal Server Error!");
     assert.ok(console.error.called);
     assert.ok(/custom status message/.test(console.error.getCall(0).args[0]));
+  });  
+
+  it("should handle HttpStatusError", function(){
+    var res = new Response();
+    errorHandler(new errors.HttpStatus(544, 'custom status message'), {}, res);
+    assert.equal(res.status_code, 544);
+    assert.equal(res.message, "Internal Server Error!");
+    assert.ok(console.error.called);
+    assert.ok(/custom status message/.test(console.error.getCall(0).args[0]));
+  });  
+
+  it("should handle HttpStatusError 400", function(){
+    var res = new Response();
+    errorHandler(new errors.HttpStatus(444, 'custom status message'), {}, res);
+    assert.equal(res.status_code, 444);
+    assert.equal(res.message, "custom status message");
+    assert.ok(!console.error.called);
   });  
 
 });
