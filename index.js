@@ -1,3 +1,5 @@
+var util = require('util');
+
 module.exports = {
     Validation: require('./lib/validation'),
     Generic: require('./lib/generic'),
@@ -8,6 +10,9 @@ module.exports = {
     AlreadyInUse: require('./lib/alreadyInUse'),
     NotPermitted: require('./lib/notPermitted'),
     AuthenticationRequired: require('./lib/authenticationRequired'),
+    helpers: {
+      generateClass: require('./lib/helpers/class-generator')
+    },
     middleware: {
       errorHandler: require('./lib/middleware/errorHandler'),
       crashProtector: require('./lib/middleware/crashProtector')
