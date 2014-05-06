@@ -269,6 +269,8 @@ var ArgumentNullError = helpers.generateClass("ArgumentNullError", {
     return "Missing argument: " + this.argumentName;
   }
 });
+
+throw new ArgumentNullError("username");
 ```
 
 
