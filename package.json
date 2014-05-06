@@ -2,7 +2,7 @@
   "name": "common-errors",
   "author": "David Fenster <david@dfenster.com>",
   "description": "Common error classes and utility functions",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/shutterstock/node-common-errors.git"
@@ -35,7 +35,7 @@
     "error handler"
   ],
   "scripts": {
-    "test": "nodeunit tests"
+    "test": "mocha --recursive tests"
   },
   "main": "index.js",
   "engines": { "node": ">= 0.8" }
