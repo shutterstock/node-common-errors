@@ -20,6 +20,7 @@ Common error classes and utility functions
 ### Utility Functions
 
 * [log](#log)
+* [generateClass](#generateClass)
 
 ### Express Middleware Functions
 
@@ -243,6 +244,33 @@ mysql.query('SELECT * `FROM` users', function(err, results){
 	console.log(results);
 });
 ```
+
+<a name="generateClass" />
+### generateClass
+
+Simple interface for generating a new Error class type.
+
+	helpers.generateClass(name[, options])
+
+__Arguments__
+
+* `name` - The full name of the new Error class
+* `options`
+  * `subclass` - The base class for the new Error class. Default is `Error`.
+  * `args` - Array of names of values to accept and store from the class constructor. Default is `['message']`.
+  * `generateMessage` - A function for defining a custom error message.
+
+```js
+// Example
+var ArgumentNullError = helpers.generateClass("ArgumentNullError", {
+  subclass: ArgumentError,
+  args: ['argumentName'],
+  generateMessage: function(){
+    return "Missing argument: " + this.argumentName;
+  }
+});
+```
+
 
 ## Express Middleware Functions
 
