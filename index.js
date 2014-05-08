@@ -1,6 +1,10 @@
 var util = require('util');
 
+var classGenerator = require('./lib/helpers/class-generator');
+
 module.exports = {
+    Error: classGenerator('Error'),
+    ReferenceError: classGenerator('ReferenceError', {subclass: ReferenceError}),
     Validation: require('./lib/validation'),
     Generic: require('./lib/generic'),
     HttpStatus: require('./lib/http-status'),
@@ -11,7 +15,7 @@ module.exports = {
     NotPermitted: require('./lib/notPermitted'),
     AuthenticationRequired: require('./lib/authenticationRequired'),
     helpers: {
-      generateClass: require('./lib/helpers/class-generator')
+      generateClass: classGenerator
     },
     middleware: {
       errorHandler: require('./lib/middleware/errorHandler'),
