@@ -13,11 +13,26 @@ Common error classes and utility functions
 * [ArgumentError](#argument)
 * [ArgumentNullError](#argumentnull)
 * [AuthenticationRequiredError](#authrequired)
-* [GenericError](#generic)
+* [Error](#error)
 * [HttpStatusError](#httpstatus)
+* [IOError](#io)
+  * [DirectoryNotFoundError](#directorynotfound)
+  * [DriveNotFoundError](#drivenotfound)
+  * [EndOfStreamError](#endofstream)
+  * [FileLoadError](#fileload)
+  * [FileNotFoundError](#filenotfound)
+* [NotImplementedError](#notimplemented)
 * [NotPermittedError](#notpermitted)
 * [NotSupportedError](#notsupported)
+* [OutOfMemoryError](#outofmemory)
+* [RangeError](#range)
+* [ReferenceError](#reference)
+* [StackOverflowError](#stackoverflow)
+* [SyntaxError](#syntax)
+* [TypeError](#type)
+* [URIError](#uri)
 * [ValidationError](#validation)
+
 
 ### Utility Functions
 
@@ -45,7 +60,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.ArgumentNull('user', 'username');
+throw new errors.ArgumentNullError('user', 'username');
 ```
 
 ---------------------------------------
@@ -55,15 +70,16 @@ throw new errors.ArgumentNull('user', 'username');
 
 Applicable when there's a generic problem with an argument received by a function call.
 
-	new ArgumentError(argumentName)
+	new ArgumentError(argumentName[, inner_error])
 
 __Arguments__
 
 * `argumentName` - the name of the argument that has a problem
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-throw new errors.Argument('username');
+throw new errors.ArgumentError('username', err);
 ```
 
 ---------------------------------------
@@ -73,15 +89,16 @@ throw new errors.Argument('username');
 
 Applicable when an argument received by a function call is null/undefined or empty.
 
-	new ArgumentNullError(argumentName)
+	new ArgumentNullError(argumentName[, inner_error])
 
 __Arguments__
 
 * `argumentName` - the name of the argument that is null
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-throw new errors.ArgumentNull('username');
+throw new errors.ArgumentNullError('username', err);
 ```
 
 ---------------------------------------
@@ -91,42 +108,35 @@ throw new errors.ArgumentNull('username');
 
 Applicable when an operation requires authentication
 
-	new AuthenticationRequiredError(message)
+	new AuthenticationRequiredError(message, [inner_error])
 
 __Arguments__
 
 * `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-throw new errors.AuthenticationRequiredError("Please provide authentication.")
+throw new errors.AuthenticationRequiredError("Please provide authentication.", err)
 ```
 
 ---------------------------------------
 
-<a name="generic" />
-### GenericError
+<a name="error" />
+### Error
 
-Applicable for any error returned by a callback, or any time you want to throw a new error that is based from another error.
-Call stacks from both errors will be concatenated for a full call stack.  This effectively patches a design issue in JavaScript
-where logging an error from an asynchronous callback will show only the call stack from the error's context, but does not
-show the the stack where it was consumed.
-For example, if you perform a SQL query that returns an error with the callback, you don't know where in *your* `code` the offending
-query was generated.  Wrapping the returned error in your own GenericError will solve this problem.
+This is roughly the same as the native Error class. It additionally supports an inner_error attribute.
 
-	new GenericError(message[, innerError])
+	new Error(message, [inner_error])
 
 __Arguments__
 
-* `message` - any message you want
-* `innerError` - any error that you want to preserve with the new error
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-mysql.query('SELECT * `FROM` users', function(err, results){
-	if(err) return new errors.Generic("Had trouble retrieving users.", err);
-	console.log(results);
-})
+throw new errors.Error("Please provide authentication.", err)
 ```
 
 ---------------------------------------
@@ -145,7 +155,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.HttpStatus("Not Found", 404);
+throw new errors.HttpStatusError(404, "Not Found");
 ```
 
 	new HttpStatusError(err[, req])
@@ -155,14 +165,147 @@ To change the mappings, modify `HttpStatusError.message_map` and `HttpStatusErro
 
 __Arguments__
 
-* `err` - any Error subclass
+* `err` - any instanceof Error
 * `req` - the request object
 
 
 
 ```js
 // Example
-throw new errors.HttpStatus("Not Found", 404);
+throw new errors.HttpStatusError(err, req);
+```
+
+---------------------------------------
+
+<a name="io" />
+### IOError
+
+Base class for Errors while accessing information using streams, files and directories.
+
+	new IOError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.IOError("Could not open file", err)
+```
+
+---------------------------------------
+
+<a name="directorynotfound" />
+### DirectoryNotFoundError
+
+Applicable when part of a file or directory cannot be found.
+
+	new DirectoryNotFoundError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.DirectoryNotFoundError("/var/log", err)
+```
+
+---------------------------------------
+
+<a name="drivenotfound" />
+### DriveNotFoundError
+
+Applicable when trying to access a drive or share that is not available.
+
+	new DriveNotFoundError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.DriveNotFoundError("c", err)
+```
+
+---------------------------------------
+
+<a name="endofstream" />
+### EndOfStreamError
+
+Applicable when reading is attempted past the end of a stream.
+
+	new EndOfStreamError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.EndOfStreamError("EOS while reading header", err)
+```
+
+---------------------------------------
+
+<a name="fileload" />
+### FileLoadError
+
+Applicable when a file is found and read but cannot be loaded.
+
+	new FileLoadError(message[, inner_error])
+
+__Arguments__
+
+* `file_name` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.FileLoadError("./package.json", err)
+```
+
+---------------------------------------
+
+<a name="filenotfound" />
+### FileNotFoundError
+
+Applicable when an attempt to access a file that does not exist on disk fails.
+
+	new FileNotFoundError(message[, inner_error])
+
+__Arguments__
+
+* `file_name` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.io.FileNotFoundError("./package.json", err)
+```
+
+---------------------------------------
+
+<a name="notimplemented" />
+### NotImplementedError
+
+Applicable when a requested method or operation is not implemented.
+
+	new NotImplementedError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.NotImplementedError("Method is not yet implemented.", err)
 ```
 
 ---------------------------------------
@@ -172,15 +315,16 @@ throw new errors.HttpStatus("Not Found", 404);
 
 Applicable when an operation is not permitted
 
-	new NotPermittedError(message)
+	new NotPermittedError(message[, inner_error])
 
 __Arguments__
 
 * `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-throw new errors.NotPermitted("username cannot be changed once set.")
+throw new errors.NotPermittedError("username cannot be changed once set.", err)
 ```
 
 ---------------------------------------
@@ -190,15 +334,149 @@ throw new errors.NotPermitted("username cannot be changed once set.")
 
 Applicable when a certain condition is not supported by your application.
 
-	new NotSupportedError(message)
+	new NotSupportedError(message[, inner_error])
 
 __Arguments__
 
 * `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
 
 ```js
 // Example
-throw new errors.NotSupported('Zero values');
+throw new errors.NotSupportedError('Zero values', err);
+```
+
+---------------------------------------
+
+<a name="outofmemory" />
+### OutOfMemoryError
+
+Applicable when there is not enough memory to continue the execution of a program.
+
+	new OutOfMemoryError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.OutOfMemoryError('Maximum mem size exceeded.', err);
+```
+
+---------------------------------------
+
+<a name="range" />
+### RangeError
+
+Represents an error that occurs when a numeric variable or parameter is outside of its valid range. This is roughly the same as the native RangeError class. It additionally supports an inner_error attribute.
+
+	new RangeError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.RangeError("Value must be between " + MIN + " and " + MAX, err);
+```
+
+---------------------------------------
+
+<a name="reference" />
+### ReferenceError
+
+Represents an error when a non-existent variable is referenced. This is roughly the same as the native ReferenceError class. It additionally supports an inner_error attribute.
+
+	new ReferenceError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.ReferenceError("x is not defined", err);
+```
+
+---------------------------------------
+
+<a name="stackoverflow" />
+### StackOverflowError
+
+Applicable when the execution stack overflows because it contains too many nested method calls.
+
+	new StackOverflowError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.StackOverflowError('Stack overflow detected.', err);
+```
+
+---------------------------------------
+
+<a name="syntax" />
+### SyntaxError
+
+Represents an error when trying to interpret syntactically invalid code. This is roughly the same as the native SyntaxError class. It additionally supports an inner_error attribute.
+
+	new SyntaxError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.SyntaxError("Unexpected token a", err);
+```
+
+---------------------------------------
+
+<a name="type" />
+### TypeError
+
+Represents an error when a value is not of the expected type. This is roughly the same as the native TypeError class. It additionally supports an inner_error attribute.
+
+	new TypeError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.TypeError("number is not a function", err);
+```
+
+---------------------------------------
+
+<a name="uri" />
+### URIError
+
+Represents an error when a value is not of the expected type. This is roughly the same as the native URIError class. It additionally supports an inner_error attribute.
+
+	new URIError(message[, inner_error])
+
+__Arguments__
+
+* `message` - a message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.URIError("URI malformed", err);
 ```
 
 ---------------------------------------
@@ -206,7 +484,7 @@ throw new errors.NotSupported('Zero values');
 <a name="validation" />
 ### ValidationError
 
-Useful for denoting a problem with a user-defined value.  Generally, you wont throw this error.
+Useful for denoting a problem with a user-defined value.  Generally, you won't throw this error.
 
 	new ValidationError(message[, code])
 
@@ -258,14 +536,14 @@ __Arguments__
 
 * `name` - The full name of the new Error class
 * `options`
-  * `subclass` - The base class for the new Error class. Default is `Error`.
+  * `extends` - The base class for the new Error class. Default is `Error`.
   * `args` - Array of names of values to accept and store from the class constructor. Default is `['message']`.
   * `generateMessage` - A function for defining a custom error message.
 
 ```js
 // Example
 var ArgumentNullError = helpers.generateClass("ArgumentNullError", {
-  subclass: ArgumentError,
+  extends: ArgumentError,
   args: ['argumentName'],
   generateMessage: function(){
     return "Missing argument: " + this.argumentName;

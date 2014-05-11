@@ -51,9 +51,9 @@ describe("errors.log", function(){
   it("log string error", function(){
     var err2 = logAnError("Panic!");
     assert.equal(errorLog.length, 1);
-    assert.ok(/GenericError: Panic!/.test(errorLog[0]), 'message matches');
+    assert.ok(/Error: Panic!/.test(errorLog[0]), 'message matches');
     assert.ok(err2.isLogged);
-    assert.ok(err2 instanceof errors.Generic, 'we have a generic error');
+    assert.ok(err2 instanceof errors.Error, 'we have an error');
     assert.ok(!/====[ ]/.test(errorLog[0]), "we don't prepend any stack traces");
   })
 
