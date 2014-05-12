@@ -51,7 +51,7 @@ Common error classes and utility functions
 
 Applicable when a resource is already in use, for example unique key constraints like a username.
 
-	new ArgumentNullError(entityName, arg1, [arg2, arg3, arg4, ...])
+	new AlreadyInUseError(entityName, arg1, [arg2, arg3, arg4, ...])
 
 __Arguments__
 
@@ -60,7 +60,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.ArgumentNullError('user', 'username');
+throw new errors.AlreadyInUseError('user', 'username');
 ```
 
 ---------------------------------------
