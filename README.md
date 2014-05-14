@@ -1,7 +1,12 @@
-node-errors
+common-errors
 ===========
 
-Common error classes and utility functions
+Common error classes and utility functions 
+
+* Full suite of node.js Error classes like most other modern languages
+* Append stack traces from other asynchronously generated Errors
+* Generate your own custom Error classes in one line
+* Map HTTP status codes to Errors for automatic handling in web services and applications
 
 [![Build Status](https://secure.travis-ci.org/shutterstock/node-common-errors.png)](http://travis-ci.org/shutterstock/node-common-errors)
 
