@@ -542,7 +542,7 @@ __Arguments__
 * `name` - The full name of the new Error class
 * `options`
   * `extends` - The base class for the new Error class. Default is `Error`.
-  * `args` - Array of names of values to accept and store from the class constructor. Default is `['message']`.
+  * `args` - Array of names of values to accept and store from the class constructor. Default is `['message', 'inner_error']`.
   * `generateMessage` - A function for defining a custom error message.
 
 ```js
