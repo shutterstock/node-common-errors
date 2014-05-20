@@ -546,7 +546,7 @@ __Arguments__
 // Example
 mysql.query('SELECT * `FROM` users', function(err, results){
 	if(err) {
-		return errors.prependCurrentStack(err); // caller can know where stack came from
+		return errors.prependCurrentStack(err); // caller has better idea of source of err
 	}
 	console.log(results);
 });
