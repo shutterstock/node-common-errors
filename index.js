@@ -9,7 +9,7 @@ var exports = module.exports = {
     crashProtector: require('./lib/middleware/crashProtector')
   }
 };
-  
+
 exports.AlreadyInUseError = exports.AlreadyInUse = require('./lib/alreadyInUse');
 exports.ArgumentError = exports.Argument = require('./lib/argument');
 exports.ArgumentNullError = exports.ArgumentNull = require('./lib/argumentNull');
@@ -61,7 +61,7 @@ module.exports.log = function(err, message) {
     if (message) {
       err.message = message;
     }
-    err = module.exports._prependCurrentStack(err);
+    err = module.exports.prependCurrentStack(err, 3);
   }
   if (err) {
     console.error(err && err.stack || err);
@@ -70,9 +70,9 @@ module.exports.log = function(err, message) {
   return err;
 }
 
-module.exports._prependCurrentStack = function(err) {
-  // skip the first three lines, because they're just noise
-  var stackToPrepend = (new Error()).stack.split("\n").slice(3);
+module.exports.prependCurrentStack = function(err, offset_) {
+  var linesToSkip = (typeof offset_ === 'undefined') ? 2 : offset_;
+  var stackToPrepend = (new Error()).stack.split("\n").slice(linesToSkip);
   var mainStack = err.stack.split("\n");
   var errTitle = mainStack.shift();
   err.stack = [errTitle].concat(stackToPrepend, "====", mainStack).join("\n");

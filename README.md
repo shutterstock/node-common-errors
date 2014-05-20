@@ -42,6 +42,7 @@ Common error classes and utility functions
 ### Utility Functions
 
 * [log](#log)
+* [prependCurrentStack](#prependCurrentStack)
 * [generateClass](#generateClass)
 
 ### Express Middleware Functions
@@ -526,6 +527,27 @@ __Arguments__
 // Example
 mysql.query('SELECT * `FROM` users', function(err, results){
 	if(err) return errors.log(err, "Had trouble retrieving users.");
+	console.log(results);
+});
+```
+
+<a name="prependCurrentStack" />
+### prependCurrentStack
+
+Modifies an error's stack to include the current stack without logging it.  Useful for logging errors received by a callback.
+
+	prependCurrentStack(err)
+
+__Arguments__
+
+* `err` - any error or error message received from a callback
+
+```js
+// Example
+mysql.query('SELECT * `FROM` users', function(err, results){
+	if(err) {
+		return errors.prependCurrentStack(err); // caller has better idea of source of err
+	}
 	console.log(results);
 });
 ```
