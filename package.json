@@ -19,7 +19,7 @@
     "mocha": "*",
     "sinon": "*",
     "lodash": "= 2.4.1",
-    "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v0"
+    "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1"
   },
   "keywords": [
     "common",
