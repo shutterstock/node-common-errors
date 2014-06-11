@@ -77,6 +77,14 @@ describe("errorHandler", function(){
     assert.ok(!console.error.called);
   });
 
+  it("should handle NotFoundError", function(){
+    var res = new Response();
+    errorHandler(new errors.NotFoundError("test"), {}, res);
+    assert.equal(res.status_code, 404);
+    assert.equal(res.message, "Not Found: \"test\"");
+    assert.ok(!console.error.called);
+  });
+
   it("should handle Error", function(){
     var res = new Response();
     errorHandler(new Error("test"), {}, res);

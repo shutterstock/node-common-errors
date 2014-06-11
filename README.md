@@ -26,6 +26,7 @@ Common error classes and utility functions
   * [EndOfStreamError](#endofstream)
   * [FileLoadError](#fileload)
   * [FileNotFoundError](#filenotfound)
+* [NotFoundError](#notfound)
 * [NotImplementedError](#notimplemented)
 * [NotPermittedError](#notpermitted)
 * [NotSupportedError](#notsupported)
@@ -293,6 +294,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.io.FileNotFoundError("./package.json", err)
+```
+
+---------------------------------------
+
+<a name="notfound" />
+### NotFoundError
+
+Applicable when an attempt to retrieve data yielded no result.
+
+	new NotFoundError(entity_name[, inner_error])
+
+__Arguments__
+
+* `entity_name` - a description for what was not found
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.NotFoundError("User", err)
 ```
 
 ---------------------------------------

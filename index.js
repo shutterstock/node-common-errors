@@ -16,6 +16,7 @@ exports.ArgumentNullError = exports.ArgumentNull = require('./lib/argumentNull')
 exports.AuthenticationRequiredError = exports.AuthenticationRequired = require('./lib/authenticationRequired');
 exports.Error = exports.helpers.generateClass('Error');
 exports.HttpStatusError = exports.HttpStatus = require('./lib/http-status');
+exports.NotFoundError = require('./lib/not-found');
 exports.NotImplementedError = exports.helpers.generateClass('NotImplementedError'),
 exports.NotSupportedError = exports.NotSupported = require('./lib/not-supported');
 exports.NotPermittedError = exports.NotPermitted = require('./lib/notPermitted');
@@ -73,7 +74,7 @@ module.exports.log = function(err, message) {
 module.exports.prependCurrentStack = function(err, offset_) {
   var linesToSkip = (typeof offset_ === 'undefined') ? 2 : offset_;
   var stackToPrepend = (new Error()).stack.split("\n").slice(linesToSkip);
-  var mainStack = err.stack.split("\n");
+  var mainStack = (err.stack || '').split("\n");
   var errTitle = mainStack.shift();
   err.stack = [errTitle].concat(stackToPrepend, "====", mainStack).join("\n");
   return err;
