@@ -1,5 +1,6 @@
 var assert = require('assert');
 var classGenerator = require('../../lib/helpers/class-generator');
+var errors = require('../../');
 
 describe('classGenerator', function(){
   it("should work", function(){
@@ -60,4 +61,16 @@ describe('classGenerator', function(){
     assert.ok(caught_error, "using non-word characters in args array is unsafe");
   });
 
+  it('should globalize errors', function(){
+    var GlobalError = classGenerator("SomeError");
+    var GlobalError2 = classGenerator("SomeError");
+    var LocalError = classGenerator("SomeError", {globalize: false});
+
+    assert.ok(new GlobalError() instanceof Error);
+    assert.ok(new GlobalError2() instanceof Error);
+    assert.ok(new LocalError() instanceof Error);
+    assert.ok(new GlobalError() instanceof GlobalError2);
+    assert.ok(new GlobalError2() instanceof GlobalError);
+    assert.ok(!(new GlobalError() instanceof LocalError));
+  });
 });
