@@ -523,8 +523,8 @@ __Arguments__
 // Example
 function validateUsername(username){
 	var errors = [];
-	if(username.length < 3) errors.push(new errors.Validation("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH"));
-	if(/-%$*&!/.test(username)) errors.push(new errors.Validation("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS"));
+	if(username.length < 3) errors.push(new errors.ValidationError("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH"));
+	if(/-%$*&!/.test(username)) errors.push(new errors.ValidationError("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS"));
 	return errors;
 }
 ```
