@@ -27,6 +27,7 @@ exports.StackOverflowError = exports.helpers.generateClass('StackOverflowError')
 exports.SyntaxError = exports.helpers.generateClass('SyntaxError', { extends: SyntaxError });
 exports.TypeError = exports.helpers.generateClass('TypeError', { extends: TypeError });
 exports.URIError = exports.helpers.generateClass('URIError', { extends: URIError });
+exports.ValidationError = exports.Validation = require('./lib/validation');
 
 exports.io = {
   IOError: require('./lib/io/io')
@@ -37,8 +38,6 @@ exports.io.EndOfStreamError = exports.helpers.generateClass('EndOfStreamError', 
 exports.io.FileLoadError = require('./lib/io/file-load');
 exports.io.FileNotFoundError = require('./lib/io/file-not-found');
 
-
-exports.Validation = require('./lib/validation');
 
 exports.Generic = exports.helpers.generateClass('GenericError'); //deprecated
 
