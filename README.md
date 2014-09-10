@@ -511,20 +511,27 @@ throw new errors.URIError("URI malformed", err);
 ### ValidationError
 
 Useful for denoting a problem with a user-defined value.  Generally, you won't throw this error.
+It serializes to JSON, and it can also function as an envelope for multiple errors.
 
-	new ValidationError(message[, code])
+	new ValidationError(message, [code], [field])
 
 __Arguments__
 
 * `message` - any message
 * `code` - an optional error code
+* `field` - an optional description of the data
+
+__Methods__
+
+* `addError(error)` - add an error object to the `errors` array, and return `this`.
+* `addErrors(errors)` - append an array of error objects to the `errors` array, and return `this`.
 
 ```js
 // Example
 function validateUsername(username){
 	var errors = [];
-	if(username.length < 3) errors.push(new errors.ValidationError("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH"));
-	if(/-%$*&!/.test(username)) errors.push(new errors.ValidationError("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS"));
+	if(username.length < 3) errors.push(new errors.ValidationError("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH", "username"));
+	if(/-%$*&!/.test(username)) errors.push(new errors.ValidationError("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS", "username"));
 	return errors;
 }
 ```
