@@ -529,9 +529,9 @@ __Methods__
 ```js
 // Example
 function validateUsername(username){
-	var errors = [];
-	if(username.length < 3) errors.push(new errors.ValidationError("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH", "username"));
-	if(/-%$*&!/.test(username)) errors.push(new errors.ValidationError("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS", "username"));
+	var errors = new errors.ValidationError();
+	if(username.length < 3) errors.addError(new errors.ValidationError("username must be at least two characters long", "VAL_MIN_USERNAME_LENGTH", "username"));
+	if(/-%$*&!/.test(username)) errors.addError(new errors.ValidationError("username may not contain special characters", "VAL_USERNAME_SPECIALCHARS", "username"));
 	return errors;
 }
 ```
