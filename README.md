@@ -10,6 +10,9 @@ Common error classes and utility functions
 
 [![Build Status](https://secure.travis-ci.org/shutterstock/node-common-errors.png)](http://travis-ci.org/shutterstock/node-common-errors)
 
+## Installation
+```npm install common-errors```
+
 ## Class Directory
 
 ### Common Error Classes
