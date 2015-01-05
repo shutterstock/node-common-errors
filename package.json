@@ -14,12 +14,17 @@
     }
   ],
   "dependencies": {
-    "lodash": "= 2.4.1"
+    "lodash": "= 2.4.1",
+    "route-parser": "0.0.2"
   },
   "devDependencies": {
     "mocha": "*",
     "sinon": "*",
-    "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1"
+    "supertest": "*",
+    "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1",
+    "express": "4.*",
+    "express3": "git://github.com/dfenster/express3.git",
+    "body-parser": "*"
   },
   "keywords": [
     "common",
@@ -39,6 +44,7 @@
     "test": "mocha --recursive tests"
   },
   "main": "index.js",
-  "engines": { "node": ">= 0.8" }
+  "engines": {
+    "node": ">= 0.8"
+  }
 }
-
