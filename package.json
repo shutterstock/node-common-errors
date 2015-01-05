@@ -22,7 +22,7 @@
     "sinon": "*",
     "supertest": "*",
     "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1",
-    "express": "4.*.*",
+    "express": "4.x.x",
     "express3": "git://github.com/dfenster/express3.git",
     "body-parser": "*"
   },
