@@ -124,25 +124,6 @@ throw new errors.ArgumentNullError('username', err);
 
 ---------------------------------------
 
-<a name="connection" />
-### ConnectionError
-
-Applicable when an error occurs on a connection.
-
-	new ConnectionError(message[, inner_error])
-
-__Arguments__
-
-* `message` - any message
-* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
-
-```js
-// Example
-throw new errors.ConnectionError('database connection no longer available', err);
-```
-
----------------------------------------
-
 <a name="authrequired" />
 ### AuthenticationRequiredError
 
@@ -158,6 +139,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.AuthenticationRequiredError("Please provide authentication.", err)
+```
+
+---------------------------------------
+
+<a name="connection" />
+### ConnectionError
+
+Applicable when an error occurs on a connection.
+
+	new ConnectionError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.ConnectionError('database connection no longer available', err);
 ```
 
 ---------------------------------------
@@ -213,6 +213,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.HttpStatusError(err, req);
+```
+
+---------------------------------------
+
+<a name="invalidoperation" />
+### InvalidOperationError
+
+Applicable when an invalid operation occurs.
+
+	new InvalidOperationError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.InvalidOperationError('divide by zero', err);
 ```
 
 ---------------------------------------
@@ -327,6 +346,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.io.FileNotFoundError("./package.json", err)
+```
+
+---------------------------------------
+
+<a name="socket" />
+### SocketError
+
+Applicable when an error occurs on a socket.
+
+	new SocketError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.SocketError('socket no longer available', err);
 ```
 
 ---------------------------------------
@@ -498,6 +536,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.SyntaxError("Unexpected token a", err);
+```
+
+---------------------------------------
+
+<a name="timeout" />
+### TimeoutError
+
+Applicable when an operation takes longer than the alloted amount.
+
+	new TimeoutError(time[, inner_error])
+
+__Arguments__
+
+* `time` - a time duration
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.TimeoutError('100ms', err);
 ```
 
 ---------------------------------------
