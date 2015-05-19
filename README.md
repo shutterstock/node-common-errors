@@ -21,14 +21,24 @@ Common error classes and utility functions
 * [ArgumentError](#argument)
 * [ArgumentNullError](#argumentnull)
 * [AuthenticationRequiredError](#authrequired)
+* [ConnectionError](#connection)
+* [DataError](#data)
+  * [MemcacedError](#memcached)
+  * [MongoDBError](#mongodb)
+  * [RedisError](#redis)
+  * [RollbackError](#rollback)
+  * [SQLError](#sql)
+  * [TransactionError](#transaction)
 * [Error](#error)
 * [HttpStatusError](#httpstatus)
+* [InvalidOperationError](#invalidoperation)
 * [IOError](#io)
   * [DirectoryNotFoundError](#directorynotfound)
   * [DriveNotFoundError](#drivenotfound)
   * [EndOfStreamError](#endofstream)
   * [FileLoadError](#fileload)
   * [FileNotFoundError](#filenotfound)
+  * [SocketError](#socket)
 * [NotFoundError](#notfound)
 * [NotImplementedError](#notimplemented)
 * [NotPermittedError](#notpermitted)
@@ -38,6 +48,7 @@ Common error classes and utility functions
 * [ReferenceError](#reference)
 * [StackOverflowError](#stackoverflow)
 * [SyntaxError](#syntax)
+* [TimeoutError](#timeout)
 * [TypeError](#type)
 * [URIError](#uri)
 * [ValidationError](#validation)
@@ -109,6 +120,25 @@ __Arguments__
 ```js
 // Example
 throw new errors.ArgumentNullError('username', err);
+```
+
+---------------------------------------
+
+<a name="connection" />
+### ConnectionError
+
+Applicable when an error occurs on a connection.
+
+	new ConnectionError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.ConnectionError('database connection no longer available', err);
 ```
 
 ---------------------------------------
