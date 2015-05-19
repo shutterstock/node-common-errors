@@ -162,6 +162,139 @@ throw new errors.ConnectionError('database connection no longer available', err)
 
 ---------------------------------------
 
+<a name="data" />
+### DataError
+
+Applicable when an error occurs on or with an external data source.
+
+	new DataError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.DataError('Too many rows returned from database', err);
+```
+
+---------------------------------------
+
+<a name="memcached" />
+### MemcachedError
+
+Applicable when an error occurs while using memcached.
+
+	new MemcachedError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.MemcachedError('Expected value not found', err);
+```
+
+---------------------------------------
+
+<a name="mongodb" />
+### MongoDBError
+
+Applicable when an error occurs while using MongoDB.
+
+	new MongoDBError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.MongoDBError('Retrieved value not in expected format', err);
+```
+
+---------------------------------------
+
+<a name="redis" />
+### RedisError
+
+Applicable when an error occurs while using redis.
+
+	new RedisError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.RedisError('expected value not found in redis', err);
+```
+
+---------------------------------------
+
+<a name="rollback" />
+### RollbackError
+
+Applicable when a transaction was unexpectedly rolled back.
+
+	new RollbackError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.RollbackError('database transaction was unexpectedly rolled back', err);
+```
+
+---------------------------------------
+
+<a name="sql" />
+### SQLError
+
+Applicable when an error occurs while using a SQL database.
+
+	new SQLError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.SQLError('foreign key constraint violated', err);
+```
+
+---------------------------------------
+
+<a name="transaction" />
+### TransactionError
+
+Applicable when an error unexpectedly interrupts a transaction.
+
+	new TransactionError(message[, inner_error])
+
+__Arguments__
+
+* `message` - any message
+* `inner_error` - the Error instance that caused the current error. Stack trace will be appended.
+
+```js
+// Example
+throw new errors.TransactionError('transaction already complete', err);
+```
+
+---------------------------------------
+
 <a name="error" />
 ### Error
 
