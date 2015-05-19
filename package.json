@@ -2,7 +2,7 @@
   "name": "common-errors",
   "author": "David Fenster <david@dfenster.com>",
   "description": "Common error classes and utility functions",
-  "version": "0.4.18",
+  "version": "0.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/shutterstock/node-common-errors.git"
@@ -14,8 +14,7 @@
     }
   ],
   "dependencies": {
-    "lodash": "= 2.4.1",
-    "route-parser": "0.0.2"
+    "lodash": "= 2.4.1"
   },
   "devDependencies": {
     "mocha": "*",
@@ -31,10 +30,22 @@
     "error",
     "errors",
     "common errors",
+    "exception",
+    "exceptions",
     "validation",
     "standard",
     "argument",
     "null",
+    "database",
+    "data",
+    "mysql",
+    "sql",
+    "db",
+    "memcached",
+    "redis",
+    "transaction",
+    "rollback",
+    "connection",
     "status codes",
     "log",
     "crash",

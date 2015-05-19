@@ -14,8 +14,10 @@ exports.AlreadyInUseError = exports.AlreadyInUse = require('./lib/alreadyInUse')
 exports.ArgumentError = exports.Argument = require('./lib/argument');
 exports.ArgumentNullError = exports.ArgumentNull = require('./lib/argumentNull');
 exports.AuthenticationRequiredError = exports.AuthenticationRequired = require('./lib/authenticationRequired');
+exports.ConnectionError = exports.helpers.generateClass('ConnectionError');
 exports.Error = exports.helpers.generateClass('Error');
 exports.HttpStatusError = exports.HttpStatus = require('./lib/http-status');
+exports.InvalidOperationError = require('./lib/invalid-operation');
 exports.NotFoundError = require('./lib/not-found');
 exports.NotImplementedError = exports.helpers.generateClass('NotImplementedError'),
 exports.NotSupportedError = exports.NotSupported = require('./lib/not-supported');
@@ -25,6 +27,7 @@ exports.RangeError = exports.helpers.generateClass('RangeError', { extends: Rang
 exports.ReferenceError = exports.helpers.generateClass('ReferenceError', { extends: ReferenceError });
 exports.StackOverflowError = exports.helpers.generateClass('StackOverflowError');
 exports.SyntaxError = exports.helpers.generateClass('SyntaxError', { extends: SyntaxError });
+exports.TimeoutError = require('./lib/timeout.js')
 exports.TypeError = exports.helpers.generateClass('TypeError', { extends: TypeError });
 exports.URIError = exports.helpers.generateClass('URIError', { extends: URIError });
 exports.ValidationError = exports.Validation = require('./lib/validation');
@@ -37,6 +40,18 @@ exports.io.DriveNotFoundError = exports.helpers.generateClass('DriveNotFoundErro
 exports.io.EndOfStreamError = exports.helpers.generateClass('EndOfStreamError', { extends: exports.io.IOError });
 exports.io.FileLoadError = require('./lib/io/file-load');
 exports.io.FileNotFoundError = require('./lib/io/file-not-found');
+exports.io.SocketError = exports.helpers.generateClass('SocketError', { extends: exports.io.IOError });
+
+exports.data = {
+  DataError: require('./lib/data/data')
+};
+exports.data.MemcachedError = exports.helpers.generateClass('MemcachedError', { extends: exports.data.DataError });
+exports.data.MongoDBError = exports.helpers.generateClass('MongoDBError', { extends: exports.data.DataError });
+exports.data.RedisError = exports.helpers.generateClass('RedisError', { extends: exports.data.DataError });
+exports.data.RollbackError = exports.helpers.generateClass('RollbackError', { extends: exports.data.DataError });
+exports.data.SQLError = exports.helpers.generateClass('SQLError', { extends: exports.data.DataError });
+exports.data.TransactionError = exports.helpers.generateClass('TransactionError', { extends: exports.data.DataError });
+
 
 
 exports.Generic = exports.helpers.generateClass('GenericError'); //deprecated
