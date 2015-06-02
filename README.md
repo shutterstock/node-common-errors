@@ -176,7 +176,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.DataError('Too many rows returned from database', err);
+throw new errors.data.DataError('Too many rows returned from database', err);
 ```
 
 ---------------------------------------
@@ -195,7 +195,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.MemcachedError('Expected value not found', err);
+throw new errors.data.MemcachedError('Expected value not found', err);
 ```
 
 ---------------------------------------
@@ -214,7 +214,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.MongoDBError('Retrieved value not in expected format', err);
+throw new errors.data.MongoDBError('Retrieved value not in expected format', err);
 ```
 
 ---------------------------------------
@@ -233,7 +233,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.RedisError('expected value not found in redis', err);
+throw new errors.data.RedisError('expected value not found in redis', err);
 ```
 
 ---------------------------------------
@@ -252,7 +252,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.RollbackError('database transaction was unexpectedly rolled back', err);
+throw new errors.data.RollbackError('database transaction was unexpectedly rolled back', err);
 ```
 
 ---------------------------------------
@@ -271,7 +271,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.SQLError('foreign key constraint violated', err);
+throw new errors.data.SQLError('foreign key constraint violated', err);
 ```
 
 ---------------------------------------
@@ -290,7 +290,7 @@ __Arguments__
 
 ```js
 // Example
-throw new errors.TransactionError('transaction already complete', err);
+throw new errors.data.TransactionError('transaction already complete', err);
 ```
 
 ---------------------------------------
