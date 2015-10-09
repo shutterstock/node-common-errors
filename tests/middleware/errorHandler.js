@@ -31,7 +31,7 @@ describe("errorHandler", function(){
     err = new errors.NotPermitted("don't do that");
     request.get('/error').end(function(err, res){
       assert.equal(res.res.statusCode, 403);
-      assert.equal(res.text, "An attempt was made to perform an operation that is invalid: don't do that");
+      assert.equal(res.text, "An attempt was made to perform an operation that is not permitted: don't do that");
       assert.ok(!console.error.called, "console.error not called");
       done();
     });
