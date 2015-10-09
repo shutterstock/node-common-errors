@@ -131,7 +131,7 @@ describe("errorHandler", function(){
     err = new Error("test");
     request.get('/error').end(function(err, res){
       assert.equal(res.res.statusCode, 500);
-      assert.equal(res.text, "Internal Server Error!");
+      assert.equal(res.text, "Internal Server Error");
       assert.ok(console.error.called);
       assert.ok(/test/.test(console.error.getCall(0).args[0]));
       done();
@@ -143,7 +143,7 @@ describe("errorHandler", function(){
     err.status = 544;
     request.get('/error').end(function(err, res){
       assert.equal(res.res.statusCode, 544);
-      assert.equal(res.text, "Internal Server Error!");
+      assert.equal(res.text, "Internal Server Error");
       assert.ok(console.error.called);
       assert.ok(/test/.test(console.error.getCall(0).args[0]));
       done();
@@ -154,7 +154,7 @@ describe("errorHandler", function(){
     err = new errors.HttpStatus('custom status message', 544);
     request.get('/error').end(function(err, res){
       assert.equal(res.res.statusCode, 544);
-      assert.equal(res.text, "Internal Server Error!");
+      assert.equal(res.text, "Internal Server Error");
       assert.ok(console.error.called);
       assert.ok(/custom status message/.test(console.error.getCall(0).args[0]));
       done();
@@ -165,7 +165,7 @@ describe("errorHandler", function(){
     err = new errors.HttpStatus(544, 'custom status message')
     request.get('/error').end(function(err, res){
       assert.equal(res.res.statusCode, 544);
-      assert.equal(res.text, "Internal Server Error!");
+      assert.equal(res.text, "Internal Server Error");
       assert.ok(console.error.called);
       assert.ok(/custom status message/.test(console.error.getCall(0).args[0]));
       done();
