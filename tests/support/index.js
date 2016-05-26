@@ -1,5 +1,6 @@
 var assert = require('assert');
 var errors = require('../..');
+var Promise = require('bluebird');
 
 module.exports.testError = function testError(name, opts){
   opts = opts || {};
@@ -13,7 +14,17 @@ module.exports.testError = function testError(name, opts){
     assert.equal(error.message, opts.message_to_assert);
     assert.ok(new RegExp(error.name + ": " + error.message + "\n(.*\n)+").test(error.stack), "Stack is good");
     assert.equal(Err.super_.name, opts.extends.name, "It is an instance of" + opts.extends.name);
-    assert.ok(error instanceof Error, opts.extends, "It is an instanceof " + opts.extends.name);  
+    assert.ok(error instanceof Error, "It is an instanceof Error");
+    assert.ok(error instanceof opts.extends, "It is an instanceof " + opts.extends.name);
+
+    var caught_error_in_promise = false;
+    var promise = new Promise(function(res, rej) { res(true); }).then(function(){
+      throw new opts.extends("test error");
+    }).catch(opts.extends, function(e){
+      caught_error_in_promise = true;
+    }).finally(function(){
+      assert.ok(caught_error_in_promise, "caught promise error");
+    });
   }  
 
   describe(name, function(){
