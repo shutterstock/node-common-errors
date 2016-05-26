@@ -4,7 +4,6 @@ var HttpStatusError = require('../').HttpStatusError;
 describe("HttpStatusError", function(){
   function performBasicAssertions(error){
     assert.equal(error.name, "HttpStatusError"), 'Its name is correct.';
-    console.log(error, error.stack)
     assert.ok(new RegExp(error.name + ": " + error.message.replace(/\)/g, '\\)').replace(/\(/g, '\\(') + "\n(.*\n)+").test(error.stack), "Stack is good");
     assert.ok(error instanceof Error, Error, "It is an instanceof Error");
   }

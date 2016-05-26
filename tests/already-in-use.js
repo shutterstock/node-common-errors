@@ -14,7 +14,7 @@ describe(name, function(){
 
     var caught_error_in_promise = false;
     var promise = new Promise(function(res, rej) { res(true); }).then(function(){
-      throw new opts.extends("test error");
+      throw new Err("test error");
     }).catch(Error, function(e){
       caught_error_in_promise = true;
     }).finally(function(){
@@ -23,3 +23,4 @@ describe(name, function(){
 
   });
 });
+
