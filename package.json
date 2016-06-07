@@ -13,9 +13,7 @@
       "url": "https://github.com/shutterstock/node-common-errors/raw/master/README.md"
     }
   ],
-  "dependencies": {
-    "bluebird": "^3.4.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "*",
     "sinon": "*",
@@ -24,7 +22,8 @@
     "express": "4.x.x",
     "express3": "git://github.com/dfenster/express3.git",
     "body-parser": "*",
-    "lodash": "= 3.10.1"
+    "lodash": "= 3.10.1",
+    "bluebird": "^3.4.0"
   },
   "keywords": [
     "common",
