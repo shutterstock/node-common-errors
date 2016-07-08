@@ -150,6 +150,30 @@ describe("errorHandler", function(){
     });
   });  
 
+  it("should handle Error status", function(done){
+    err = new Error("test");
+    err.statusCode = 544;
+    request.get('/error').end(function(err, res){
+      assert.equal(res.res.statusCode, 544);
+      assert.equal(res.text, "Internal Server Error");
+      assert.ok(console.error.called);
+      assert.ok(/test/.test(console.error.getCall(0).args[0]));
+      done();
+    });
+  });  
+
+  it("should handle Error status", function(done){
+    err = new Error("test");
+    err.status_code = 544;
+    request.get('/error').end(function(err, res){
+      assert.equal(res.res.statusCode, 544);
+      assert.equal(res.text, "Internal Server Error");
+      assert.ok(console.error.called);
+      assert.ok(/test/.test(console.error.getCall(0).args[0]));
+      done();
+    });
+  });  
+
   it("should handle HttpStatusError (deprecated)", function(done){
     err = new errors.HttpStatus('custom status message', 544);
     request.get('/error').end(function(err, res){
