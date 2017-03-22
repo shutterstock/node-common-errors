@@ -68,6 +68,7 @@ Common error classes and utility functions
 ## Common Error Classes
 
 <a name="alreadyinuse" />
+
 ### AlreadyInUseError
 
 Applicable when a resource is already in use, for example unique key constraints like a username.
@@ -87,6 +88,7 @@ throw new errors.AlreadyInUseError('user', 'username');
 ---------------------------------------
 
 <a name="argument" />
+
 ### ArgumentError
 
 Applicable when there's a generic problem with an argument received by a function call.
@@ -106,6 +108,7 @@ throw new errors.ArgumentError('username', err);
 ---------------------------------------
 
 <a name="argumentnull" />
+
 ### ArgumentNullError
 
 Applicable when an argument received by a function call is null/undefined or empty.
@@ -125,6 +128,7 @@ throw new errors.ArgumentNullError('username', err);
 ---------------------------------------
 
 <a name="authrequired" />
+
 ### AuthenticationRequiredError
 
 Applicable when an operation requires authentication
@@ -144,6 +148,7 @@ throw new errors.AuthenticationRequiredError("Please provide authentication.", e
 ---------------------------------------
 
 <a name="connection" />
+
 ### ConnectionError
 
 Applicable when an error occurs on a connection.
@@ -163,6 +168,7 @@ throw new errors.ConnectionError('database connection no longer available', err)
 ---------------------------------------
 
 <a name="data" />
+
 ### DataError
 
 Applicable when an error occurs on or with an external data source.
@@ -182,6 +188,7 @@ throw new errors.data.DataError('Too many rows returned from database', err);
 ---------------------------------------
 
 <a name="memcached" />
+
 ### MemcachedError
 
 Applicable when an error occurs while using memcached.
@@ -201,6 +208,7 @@ throw new errors.data.MemcachedError('Expected value not found', err);
 ---------------------------------------
 
 <a name="mongodb" />
+
 ### MongoDBError
 
 Applicable when an error occurs while using MongoDB.
@@ -220,6 +228,7 @@ throw new errors.data.MongoDBError('Retrieved value not in expected format', err
 ---------------------------------------
 
 <a name="redis" />
+
 ### RedisError
 
 Applicable when an error occurs while using redis.
@@ -239,6 +248,7 @@ throw new errors.data.RedisError('expected value not found in redis', err);
 ---------------------------------------
 
 <a name="rollback" />
+
 ### RollbackError
 
 Applicable when a transaction was unexpectedly rolled back.
@@ -258,6 +268,7 @@ throw new errors.data.RollbackError('database transaction was unexpectedly rolle
 ---------------------------------------
 
 <a name="sql" />
+
 ### SQLError
 
 Applicable when an error occurs while using a SQL database.
@@ -277,6 +288,7 @@ throw new errors.data.SQLError('foreign key constraint violated', err);
 ---------------------------------------
 
 <a name="transaction" />
+
 ### TransactionError
 
 Applicable when an error unexpectedly interrupts a transaction.
@@ -296,6 +308,7 @@ throw new errors.data.TransactionError('transaction already complete', err);
 ---------------------------------------
 
 <a name="error" />
+
 ### Error
 
 This is roughly the same as the native Error class. It additionally supports an inner_error attribute.
@@ -315,6 +328,7 @@ throw new errors.Error("Please provide authentication.", err)
 ---------------------------------------
 
 <a name="httpstatus" />
+
 ### HttpStatusError
 
 Represents a message and a HTTP status code.
@@ -351,6 +365,7 @@ throw new errors.HttpStatusError(err, req);
 ---------------------------------------
 
 <a name="invalidoperation" />
+
 ### InvalidOperationError
 
 Applicable when an invalid operation occurs.
@@ -370,6 +385,7 @@ throw new errors.InvalidOperationError('divide by zero', err);
 ---------------------------------------
 
 <a name="io" />
+
 ### IOError
 
 Base class for Errors while accessing information using streams, files and directories.
@@ -389,6 +405,7 @@ throw new errors.io.IOError("Could not open file", err)
 ---------------------------------------
 
 <a name="directorynotfound" />
+
 ### DirectoryNotFoundError
 
 Applicable when part of a file or directory cannot be found.
@@ -408,6 +425,7 @@ throw new errors.io.DirectoryNotFoundError("/var/log", err)
 ---------------------------------------
 
 <a name="drivenotfound" />
+
 ### DriveNotFoundError
 
 Applicable when trying to access a drive or share that is not available.
@@ -427,6 +445,7 @@ throw new errors.io.DriveNotFoundError("c", err)
 ---------------------------------------
 
 <a name="endofstream" />
+
 ### EndOfStreamError
 
 Applicable when reading is attempted past the end of a stream.
@@ -446,6 +465,7 @@ throw new errors.io.EndOfStreamError("EOS while reading header", err)
 ---------------------------------------
 
 <a name="fileload" />
+
 ### FileLoadError
 
 Applicable when a file is found and read but cannot be loaded.
@@ -465,6 +485,7 @@ throw new errors.io.FileLoadError("./package.json", err)
 ---------------------------------------
 
 <a name="filenotfound" />
+
 ### FileNotFoundError
 
 Applicable when an attempt to access a file that does not exist on disk fails.
@@ -484,6 +505,7 @@ throw new errors.io.FileNotFoundError("./package.json", err)
 ---------------------------------------
 
 <a name="socket" />
+
 ### SocketError
 
 Applicable when an error occurs on a socket.
@@ -503,6 +525,7 @@ throw new errors.SocketError('socket no longer available', err);
 ---------------------------------------
 
 <a name="notfound" />
+
 ### NotFoundError
 
 Applicable when an attempt to retrieve data yielded no result.
@@ -522,6 +545,7 @@ throw new errors.NotFoundError("User", err)
 ---------------------------------------
 
 <a name="notimplemented" />
+
 ### NotImplementedError
 
 Applicable when a requested method or operation is not implemented.
@@ -541,6 +565,7 @@ throw new errors.NotImplementedError("Method is not yet implemented.", err)
 ---------------------------------------
 
 <a name="notpermitted" />
+
 ### NotPermittedError
 
 Applicable when an operation is not permitted
@@ -560,6 +585,7 @@ throw new errors.NotPermittedError("username cannot be changed once set.", err)
 ---------------------------------------
 
 <a name="notsupported" />
+
 ### NotSupportedError
 
 Applicable when a certain condition is not supported by your application.
@@ -579,6 +605,7 @@ throw new errors.NotSupportedError('Zero values', err);
 ---------------------------------------
 
 <a name="outofmemory" />
+
 ### OutOfMemoryError
 
 Applicable when there is not enough memory to continue the execution of a program.
@@ -598,6 +625,7 @@ throw new errors.OutOfMemoryError('Maximum mem size exceeded.', err);
 ---------------------------------------
 
 <a name="range" />
+
 ### RangeError
 
 Represents an error that occurs when a numeric variable or parameter is outside of its valid range. This is roughly the same as the native RangeError class. It additionally supports an inner_error attribute.
@@ -617,6 +645,7 @@ throw new errors.RangeError("Value must be between " + MIN + " and " + MAX, err)
 ---------------------------------------
 
 <a name="reference" />
+
 ### ReferenceError
 
 Represents an error when a non-existent variable is referenced. This is roughly the same as the native ReferenceError class. It additionally supports an inner_error attribute.
@@ -636,6 +665,7 @@ throw new errors.ReferenceError("x is not defined", err);
 ---------------------------------------
 
 <a name="stackoverflow" />
+
 ### StackOverflowError
 
 Applicable when the execution stack overflows because it contains too many nested method calls.
@@ -655,6 +685,7 @@ throw new errors.StackOverflowError('Stack overflow detected.', err);
 ---------------------------------------
 
 <a name="syntax" />
+
 ### SyntaxError
 
 Represents an error when trying to interpret syntactically invalid code. This is roughly the same as the native SyntaxError class. It additionally supports an inner_error attribute.
@@ -674,6 +705,7 @@ throw new errors.SyntaxError("Unexpected token a", err);
 ---------------------------------------
 
 <a name="timeout" />
+
 ### TimeoutError
 
 Applicable when an operation takes longer than the alloted amount.
@@ -693,6 +725,7 @@ throw new errors.TimeoutError('100ms', err);
 ---------------------------------------
 
 <a name="type" />
+
 ### TypeError
 
 Represents an error when a value is not of the expected type. This is roughly the same as the native TypeError class. It additionally supports an inner_error attribute.
@@ -712,6 +745,7 @@ throw new errors.TypeError("number is not a function", err);
 ---------------------------------------
 
 <a name="uri" />
+
 ### URIError
 
 Represents an error when a value is not of the expected type. This is roughly the same as the native URIError class. It additionally supports an inner_error attribute.
@@ -731,6 +765,7 @@ throw new errors.URIError("URI malformed", err);
 ---------------------------------------
 
 <a name="validation" />
+
 ### ValidationError
 
 Useful for denoting a problem with a user-defined value.  Generally, you won't throw this error.
@@ -762,6 +797,7 @@ function validateUsername(username){
 ## Utility Functions
 
 <a name="log" />
+
 ### Log
 
 Modifies an error's stack to include the current stack and logs it to *stderr*.  Useful for logging errors received by a callback.
@@ -782,6 +818,7 @@ mysql.query('SELECT * `FROM` users', function(err, results){
 ```
 
 <a name="prependCurrentStack" />
+
 ### prependCurrentStack
 
 Modifies an error's stack to include the current stack without logging it.  Useful for logging errors received by a callback.
@@ -803,6 +840,7 @@ mysql.query('SELECT * `FROM` users', function(err, results){
 ```
 
 <a name="generateClass" />
+
 ### generateClass
 
 Simple interface for generating a new Error class type.
@@ -835,6 +873,7 @@ throw new ArgumentNullError("username");
 ## Express Middleware Functions
 
 <a name="crashprotector" />
+
 ### Crash Protector
 
 Express middleware for preventing the web server from crashing when an error is thrown from an asynchronous context.  
@@ -859,6 +898,7 @@ module.exports = app;
 ```
 
 <a name="errorhandler" />
+
 ### Error Handler
 
 Express middleware that translates common errors into HTTP status codes and messages.
