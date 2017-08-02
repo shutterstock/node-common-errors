@@ -347,7 +347,22 @@ throw new errors.HttpStatusError(404, "Not Found");
 
 	new HttpStatusError(err[, req])
 
-Figure out a proper status code and message from a given error.
+Figure out a proper status code and message from a given error. The current mapping of error codes
+to HTTP status codes is as follows:
+
+```javascript
+{
+    "ValidationError": 400,
+    "ArgumentError": 400,
+    "AuthenticationRequiredError": 401,
+    "NotPermittedError": 403,
+    "ArgumentNullError": 404 // , or 400 depending on what's wrong with the request
+    "NotFoundError": 404,
+    "NotSupportedError": 405,
+    "AlreadyInUseError": 409,
+}
+```
+
 To change the mappings, modify `HttpStatusError.message_map` and `HttpStatusError.code_map`
 
 __Arguments__
