@@ -17,7 +17,7 @@
   "devDependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
-    "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1",
+    "common-errors": "git://github.com/shutterstock/node-common-errors.git#v1.0.2",
     "express": "4.x.x",
     "express3": "git://github.com/dfenster/express3.git",
     "mocha": "^3.5.0",
