@@ -2,7 +2,7 @@
   "name": "common-errors",
   "author": "David Fenster <david@dfenster.com>",
   "description": "Common error classes and utility functions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/shutterstock/node-common-errors.git"
