@@ -67,7 +67,7 @@ Common error classes and utility functions
 
 ## Common Error Classes
 
-<a name="alreadyinuse" />
+<a name="alreadyinuse" /></a>
 
 ### AlreadyInUseError
 
@@ -87,7 +87,7 @@ throw new errors.AlreadyInUseError('user', 'username');
 
 ---------------------------------------
 
-<a name="argument" />
+<a name="argument" /></a>
 
 ### ArgumentError
 
@@ -107,7 +107,7 @@ throw new errors.ArgumentError('username', err);
 
 ---------------------------------------
 
-<a name="argumentnull" />
+<a name="argumentnull" /></a>
 
 ### ArgumentNullError
 
@@ -127,7 +127,7 @@ throw new errors.ArgumentNullError('username', err);
 
 ---------------------------------------
 
-<a name="authrequired" />
+<a name="authrequired" /></a>
 
 ### AuthenticationRequiredError
 
@@ -147,7 +147,7 @@ throw new errors.AuthenticationRequiredError("Please provide authentication.", e
 
 ---------------------------------------
 
-<a name="connection" />
+<a name="connection" /></a>
 
 ### ConnectionError
 
@@ -167,7 +167,7 @@ throw new errors.ConnectionError('database connection no longer available', err)
 
 ---------------------------------------
 
-<a name="data" />
+<a name="data" /></a>
 
 ### DataError
 
@@ -187,7 +187,7 @@ throw new errors.data.DataError('Too many rows returned from database', err);
 
 ---------------------------------------
 
-<a name="memcached" />
+<a name="memcached" /></a>
 
 ### MemcachedError
 
@@ -207,7 +207,7 @@ throw new errors.data.MemcachedError('Expected value not found', err);
 
 ---------------------------------------
 
-<a name="mongodb" />
+<a name="mongodb" /></a>
 
 ### MongoDBError
 
@@ -227,7 +227,7 @@ throw new errors.data.MongoDBError('Retrieved value not in expected format', err
 
 ---------------------------------------
 
-<a name="redis" />
+<a name="redis" /></a>
 
 ### RedisError
 
@@ -247,7 +247,7 @@ throw new errors.data.RedisError('expected value not found in redis', err);
 
 ---------------------------------------
 
-<a name="rollback" />
+<a name="rollback" /></a>
 
 ### RollbackError
 
@@ -267,7 +267,7 @@ throw new errors.data.RollbackError('database transaction was unexpectedly rolle
 
 ---------------------------------------
 
-<a name="sql" />
+<a name="sql" /></a>
 
 ### SQLError
 
@@ -287,7 +287,7 @@ throw new errors.data.SQLError('foreign key constraint violated', err);
 
 ---------------------------------------
 
-<a name="transaction" />
+<a name="transaction" /></a>
 
 ### TransactionError
 
@@ -307,7 +307,7 @@ throw new errors.data.TransactionError('transaction already complete', err);
 
 ---------------------------------------
 
-<a name="error" />
+<a name="error" /></a>
 
 ### Error
 
@@ -327,7 +327,7 @@ throw new errors.Error("Please provide authentication.", err)
 
 ---------------------------------------
 
-<a name="httpstatus" />
+<a name="httpstatus" /></a>
 
 ### HttpStatusError
 
@@ -347,7 +347,22 @@ throw new errors.HttpStatusError(404, "Not Found");
 
 	new HttpStatusError(err[, req])
 
-Figure out a proper status code and message from a given error.
+Figure out a proper status code and message from a given error. The current mapping of error codes
+to HTTP status codes is as follows:
+
+```javascript
+{
+    "ValidationError": 400,
+    "ArgumentError": 400,
+    "AuthenticationRequiredError": 401,
+    "NotPermittedError": 403,
+    "ArgumentNullError": 404 // , or 400 depending on what's wrong with the request
+    "NotFoundError": 404,
+    "NotSupportedError": 405,
+    "AlreadyInUseError": 409,
+}
+```
+
 To change the mappings, modify `HttpStatusError.message_map` and `HttpStatusError.code_map`
 
 __Arguments__
@@ -364,7 +379,7 @@ throw new errors.HttpStatusError(err, req);
 
 ---------------------------------------
 
-<a name="invalidoperation" />
+<a name="invalidoperation" /></a>
 
 ### InvalidOperationError
 
@@ -384,7 +399,7 @@ throw new errors.InvalidOperationError('divide by zero', err);
 
 ---------------------------------------
 
-<a name="io" />
+<a name="io" /></a>
 
 ### IOError
 
@@ -404,7 +419,7 @@ throw new errors.io.IOError("Could not open file", err)
 
 ---------------------------------------
 
-<a name="directorynotfound" />
+<a name="directorynotfound" /></a>
 
 ### DirectoryNotFoundError
 
@@ -424,7 +439,7 @@ throw new errors.io.DirectoryNotFoundError("/var/log", err)
 
 ---------------------------------------
 
-<a name="drivenotfound" />
+<a name="drivenotfound" /></a>
 
 ### DriveNotFoundError
 
@@ -444,7 +459,7 @@ throw new errors.io.DriveNotFoundError("c", err)
 
 ---------------------------------------
 
-<a name="endofstream" />
+<a name="endofstream" /></a>
 
 ### EndOfStreamError
 
@@ -464,7 +479,7 @@ throw new errors.io.EndOfStreamError("EOS while reading header", err)
 
 ---------------------------------------
 
-<a name="fileload" />
+<a name="fileload" /></a>
 
 ### FileLoadError
 
@@ -484,7 +499,7 @@ throw new errors.io.FileLoadError("./package.json", err)
 
 ---------------------------------------
 
-<a name="filenotfound" />
+<a name="filenotfound" /></a>
 
 ### FileNotFoundError
 
@@ -504,7 +519,7 @@ throw new errors.io.FileNotFoundError("./package.json", err)
 
 ---------------------------------------
 
-<a name="socket" />
+<a name="socket" /></a>
 
 ### SocketError
 
@@ -524,7 +539,7 @@ throw new errors.SocketError('socket no longer available', err);
 
 ---------------------------------------
 
-<a name="notfound" />
+<a name="notfound" /></a>
 
 ### NotFoundError
 
@@ -544,7 +559,7 @@ throw new errors.NotFoundError("User", err)
 
 ---------------------------------------
 
-<a name="notimplemented" />
+<a name="notimplemented" /></a>
 
 ### NotImplementedError
 
@@ -564,7 +579,7 @@ throw new errors.NotImplementedError("Method is not yet implemented.", err)
 
 ---------------------------------------
 
-<a name="notpermitted" />
+<a name="notpermitted" /></a>
 
 ### NotPermittedError
 
@@ -584,7 +599,7 @@ throw new errors.NotPermittedError("username cannot be changed once set.", err)
 
 ---------------------------------------
 
-<a name="notsupported" />
+<a name="notsupported" /></a>
 
 ### NotSupportedError
 
@@ -604,7 +619,7 @@ throw new errors.NotSupportedError('Zero values', err);
 
 ---------------------------------------
 
-<a name="outofmemory" />
+<a name="outofmemory" /></a>
 
 ### OutOfMemoryError
 
@@ -624,7 +639,7 @@ throw new errors.OutOfMemoryError('Maximum mem size exceeded.', err);
 
 ---------------------------------------
 
-<a name="range" />
+<a name="range" /></a>
 
 ### RangeError
 
@@ -644,7 +659,7 @@ throw new errors.RangeError("Value must be between " + MIN + " and " + MAX, err)
 
 ---------------------------------------
 
-<a name="reference" />
+<a name="reference" /></a>
 
 ### ReferenceError
 
@@ -664,7 +679,7 @@ throw new errors.ReferenceError("x is not defined", err);
 
 ---------------------------------------
 
-<a name="stackoverflow" />
+<a name="stackoverflow" /></a>
 
 ### StackOverflowError
 
@@ -684,7 +699,7 @@ throw new errors.StackOverflowError('Stack overflow detected.', err);
 
 ---------------------------------------
 
-<a name="syntax" />
+<a name="syntax" /></a>
 
 ### SyntaxError
 
@@ -704,7 +719,7 @@ throw new errors.SyntaxError("Unexpected token a", err);
 
 ---------------------------------------
 
-<a name="timeout" />
+<a name="timeout" /></a>
 
 ### TimeoutError
 
@@ -724,7 +739,7 @@ throw new errors.TimeoutError('100ms', err);
 
 ---------------------------------------
 
-<a name="type" />
+<a name="type" /></a>
 
 ### TypeError
 
@@ -744,7 +759,7 @@ throw new errors.TypeError("number is not a function", err);
 
 ---------------------------------------
 
-<a name="uri" />
+<a name="uri" /></a>
 
 ### URIError
 
@@ -764,7 +779,7 @@ throw new errors.URIError("URI malformed", err);
 
 ---------------------------------------
 
-<a name="validation" />
+<a name="validation" /></a>
 
 ### ValidationError
 
@@ -796,7 +811,7 @@ function validateUsername(username){
 
 ## Utility Functions
 
-<a name="log" />
+<a name="log" /></a>
 
 ### Log
 
@@ -817,7 +832,7 @@ mysql.query('SELECT * `FROM` users', function(err, results){
 });
 ```
 
-<a name="prependCurrentStack" />
+<a name="prependCurrentStack" /></a>
 
 ### prependCurrentStack
 
@@ -839,7 +854,7 @@ mysql.query('SELECT * `FROM` users', function(err, results){
 });
 ```
 
-<a name="generateClass" />
+<a name="generateClass" /></a>
 
 ### generateClass
 
@@ -872,7 +887,7 @@ throw new ArgumentNullError("username");
 
 ## Express Middleware Functions
 
-<a name="crashprotector" />
+<a name="crashprotector" /></a>
 
 ### Crash Protector
 
@@ -897,7 +912,7 @@ app.use(errors.middleware.errorHandler);
 module.exports = app;
 ```
 
-<a name="errorhandler" />
+<a name="errorhandler" /></a>
 
 ### Error Handler
 
