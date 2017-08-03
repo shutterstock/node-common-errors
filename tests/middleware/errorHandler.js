@@ -20,7 +20,7 @@ describe("errorHandler", function(){
   var request = new supertest(app);
 
   beforeEach(function(){
-    sandbox.stub(console, 'error', function(message){ });
+    sandbox.stub(console, 'error').callsFake(function(message){ });
   });
 
   afterEach(function(){

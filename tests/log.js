@@ -1,5 +1,4 @@
 var errors = require('../');
-var _      = require('lodash');
 var assert = require('assert');
 
 describe("errors.log", function(){
@@ -43,7 +42,7 @@ describe("errors.log", function(){
 
     var stack = err2.stack.split("\n");
     assert.ok(/logAnError/.test(stack[1]), 'we prepend the current stack trace');
-    var splitterIndex = _(stack).findIndex(function(item){return item == '===='});
+    var splitterIndex = stack.indexOf('====');
     assert.ok(splitterIndex, 'we spit the stacks with "===="');
     assert.ok(/Context\.<anonymous>/.test(stack.slice(splitterIndex)[1]), 'we keep the old stack trace');
   });
@@ -65,7 +64,7 @@ describe("errors.log", function(){
 
     var stack = err2.stack.split("\n");
     assert.ok(/logAnError/.test(stack[1]), 'we prepend the current stack trace');
-    var splitterIndex = _(stack).findIndex(function(item){return item == '===='});
+    var splitterIndex = stack.indexOf('====');
     assert.ok(splitterIndex, 'we spit the stacks with "===="');
     assert.ok(/Context\.<anonymous>/.test(stack.slice(splitterIndex)[1]), 'we keep the old stack trace');
 
@@ -83,7 +82,7 @@ describe("errors.log", function(){
 
     var stack = err2.stack.split("\n");
     assert.ok(/logAnError/.test(stack[1]), 'we prepend the current stack trace');
-    var splitterIndex = _(stack).findIndex(function(item){return item == '===='});
+    var splitterIndex = stack.indexOf('====');
     assert.ok(splitterIndex, 'we spit the stacks with "===="');
     assert.ok(/Context\.<anonymous>/.test(stack.slice(splitterIndex)[1]), 'we keep the old stack trace');
   });

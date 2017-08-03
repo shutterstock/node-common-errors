@@ -15,15 +15,14 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "mocha": "*",
-    "sinon": "*",
-    "supertest": "*",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "common-errors": "git://github.com/shutterstock/node-common-errors.git#global_extend.v1",
     "express": "4.x.x",
     "express3": "git://github.com/dfenster/express3.git",
-    "body-parser": "*",
-    "lodash": "3.10.1",
-    "bluebird": "^3.4.0"
+    "mocha": "^3.5.0",
+    "sinon": "^3.0.0",
+    "supertest": "^3.0.0"
   },
   "keywords": [
     "common",
