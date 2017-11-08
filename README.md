@@ -1,7 +1,7 @@
 common-errors
 ===========
 
-Common error classes and utility functions 
+> Common error classes and utility functions
 
 * Full suite of node.js Error classes like most other modern languages
 * Append stack traces from other asynchronously generated Errors
@@ -10,7 +10,7 @@ Common error classes and utility functions
 
 [![Build Status](https://secure.travis-ci.org/shutterstock/node-common-errors.png)](http://travis-ci.org/shutterstock/node-common-errors)
 
-## Installation
+## Install
 ```npm install common-errors```
 
 ## Class Directory
@@ -936,13 +936,13 @@ app.use(errors.middleware.errorHandler);
 module.exports = app;
 ```
 
-
-
-
 ## Authors
 
 This library was developed by David Fenster at [Shutterstock](http://www.shutterstock.com)
 
+## Contribute
+
+Please do! Check out our [Contributing guidelines](CONTRIBUTING.md).
 
 ## License
 
