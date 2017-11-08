@@ -7,12 +7,7 @@
     "type": "git",
     "url": "https://github.com/shutterstock/node-common-errors.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/shutterstock/node-common-errors/raw/master/README.md"
-    }
-  ],
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "bluebird": "^3.5.0",
