@@ -20,7 +20,6 @@
     "supertest": "^3.0.0"
   },
   "keywords": [
-    "common",
     "error",
     "errors",
     "common errors",
@@ -51,5 +50,18 @@
   "main": "index.js",
   "engines": {
     "node": ">=0.8"
-  }
+  },
+  "homepage": "https://github.com/shutterstock/node-common-errors",
+  "bugs": "https://github.com/shutterstock/node-common-errors/issues",
+  "contributors": [
+    "David Fenster <david@dfenster.com>",
+    "Ben Kovacevich <bkovacevich@shutterstock.com>",
+    "Richard Littauer <richard.littauer@gmail.com>",
+    "Elliot Foster <efoster@shutterstock.com>",
+    "Mark Stosberg <mark@rideamigos.com>",
+    "Ilya Shaisultanov <ilya.shaisultanov@gmail.com>",
+    "Mark <mail.ormark@gmail.com>",
+    "Michael Giuliana <michael.giuliana@gmail.com>",
+    "skhvan1111 <skhvan1111@gmail.com>"
+  ]
 }
