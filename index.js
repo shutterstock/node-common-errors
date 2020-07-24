@@ -1,4 +1,3 @@
-var util = require('util');
 
 var exports = module.exports = {
   helpers: {
