@@ -4,10 +4,6 @@ var exports = module.exports = {
   helpers: {
     generateClass: require('./lib/helpers/class-generator')
   },
-  middleware: {
-    errorHandler: require('./lib/middleware/errorHandler'),
-    crashProtector: require('./lib/middleware/crashProtector')
-  }
 };
 
 exports.AlreadyInUseError = exports.AlreadyInUse = require('./lib/alreadyInUse');
