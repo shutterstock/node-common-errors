@@ -20,6 +20,7 @@ describe("HttpStatusError", function(){
   it("should work with status code", function(){
     var error = new HttpStatusError(403);
     assert.equal(error.message, "(403) Forbidden");
+    assert.equal(error.name, "HttpStatusError");
     assert.equal(error.status, 403);
     assert.equal(error.status_code, 403);
     assert.equal(error.statusCode, 403);
@@ -43,6 +44,4 @@ describe("HttpStatusError", function(){
     assert.equal(error.statusCode, 403);
     performBasicAssertions(error);
   });
-
-
 });

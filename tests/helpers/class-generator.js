@@ -8,6 +8,7 @@ describe('classGenerator', function(){
     assert.ok(Err, 'Error returned');
     assert.equal(Err.length, 4, "has proper constructor arguments");
     assert.equal(Err.super_, Error, "is instanceof Error");
+    assert.equal(Err.prototype instanceof Error, true, "is instanceof Error");
     assert.equal(Err.name, "Err", "has proper name");
   });
 
