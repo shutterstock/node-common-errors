@@ -5,7 +5,6 @@ var exports = module.exports = {
   },
   middleware: {
     errorHandler: require('./lib/middleware/errorHandler'),
-    crashProtector: require('./lib/middleware/crashProtector')
   }
 };
 
