@@ -891,7 +891,7 @@ throw new ArgumentNullError("username");
 
 ### Crash Protector
 
-Express middleware for preventing the web server from crashing when an error is thrown from an asynchronous context.  
+Express middleware for preventing the web server from crashing when an error is thrown from an asynchronous context.
 Any error that would have caused a crash is logged to *stderr*.
 
 ```js
@@ -900,7 +900,6 @@ var app = express();
 
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
-app.use(errors.middleware.crashProtector());
 
 //insert new middleware here
 
@@ -924,7 +923,6 @@ var app = express();
 
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
-app.use(errors.middleware.crashProtector());
 
 //insert new middleware here
 
