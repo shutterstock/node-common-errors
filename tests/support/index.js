@@ -13,6 +13,7 @@ module.exports.testError = function testError(name, opts){
     assert.equal(error.name, name), 'Its name is correct.';
     assert.equal(error.message, opts.message_to_assert);
     assert.ok(new RegExp(error.name + ": " + error.message + "\n(.*\n)+").test(error.stack), "Stack is good");
+    assert.equal(Err.super_.name, opts.extends.name, "It is an instance of" + opts.extends.name);
     var sampleError = new Err(error);
     assert.equal(sampleError.name, name, "Has the expected type " + name);
     assert.ok(error instanceof Error, "It is an instanceof Error");
