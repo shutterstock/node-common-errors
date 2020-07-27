@@ -48,6 +48,7 @@
     "test": "mocha --recursive tests"
   },
   "main": "index.js",
+  "module": "browser.js",
   "engines": {
     "node": ">=0.8"
   },
