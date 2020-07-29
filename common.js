@@ -1,5 +1,3 @@
-var util = require('util');
-
 var exports = module.exports = {
   helpers: {
     generateClass: require('./lib/helpers/class-generator')
