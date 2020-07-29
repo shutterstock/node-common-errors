@@ -10,6 +10,7 @@ exports.ArgumentNullError = exports.ArgumentNull = require('./lib/argumentNull')
 exports.AuthenticationRequiredError = exports.AuthenticationRequired = require('./lib/authenticationRequired');
 exports.ConnectionError = exports.helpers.generateClass('ConnectionError');
 exports.Error = exports.helpers.generateClass('Error');
+exports.CommonError = Error;
 exports.HttpStatusError = exports.HttpStatus = require('./lib/http-status');
 exports.InvalidOperationError = require('./lib/invalid-operation');
 exports.NotFoundError = require('./lib/not-found');
