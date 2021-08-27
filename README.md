@@ -23,7 +23,7 @@ common-errors
 * [AuthenticationRequiredError](#authrequired)
 * [ConnectionError](#connection)
 * [DataError](#data)
-  * [MemcacedError](#memcached)
+  * [MemcachedError](#memcached)
   * [MongoDBError](#mongodb)
   * [RedisError](#redis)
   * [RollbackError](#rollback)
